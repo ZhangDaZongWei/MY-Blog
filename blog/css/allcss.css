@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+}
+body {
+    background-color: #454545;
+    line-height: 25px;
+}
+/*左右浮动*/
+.container-left {
+    width: 20%;
+    float: left;
+    position: fixed;
+}
+.container-right {
+    width: 80%;
+    float:right;
+}
+.nav {
+    padding: 20px 30px 30px;
+}
+/*home(a),intro设置*/
+.home  {
+    display: inline-block;
+    padding: 10px;
+    border: 6px solid #B5B5B2;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #eee;
+}
+.intro {
+    font-size: 16px;
+    font-weight: bold;
+    color: #eee;
+    margin: 30px 5px 30px 0;
+}
+/*列表设置*/
+.list1 li,
+.list2 li{
+    list-style: none;
+    margin-bottom: 8px;
+    
+}
+.list1 li a,
+.list2 li a {
+    display: block;
+    text-decoration: none;
+    font-weight: bold;
+    color: #888;
+}
+.list1 {
+    margin-bottom: 30px;
+}
+
+.list1 li a:hover {
+    font-size: 18px;
+    color: #eee;
+}
+/*文章设置*/
+.article-list {
+    width: 700px;
+    background-color: #eee;
+    padding: 20px;
+}
+.title a {
+    font-size: 24px;
+    font-weight: bold;
+    color: #151513;
+    text-decoration: none;
+}
+.subTitle {
+    color: #777;
+}
+.container-right p {
+    font-size: 16px;
+    margin: 15px 0;
+}
+.content {
+    margin-bottom: 20px;
+    text-align: justify;
+    color: #454544;
+    
+}
+.content p {
+    text-indent: 10px;
+    font-size: 16px;
+}
