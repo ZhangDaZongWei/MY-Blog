@@ -4,32 +4,42 @@
     padding: 0;
 }
 body {
-    background-color: #454545;
+    background-color: tomato;
     line-height: 25px;
 }
 /* ------------------------------------------ */
-/*左右两栏浮动设置区*/
-.container-left {
-    width: 20%;
-    float: left;
-    position: fixed;
-}
-.container-right {
-    width: 80%;
-    float:right;
+/*左右两栏占整宽*/
+.container-left,
+.container-right
+{
+    width: 100%;
 }
 /* ------------------------------------------ */
 /* 左侧内容设置区 */
 .nav {
-    padding: 20px 30px 30px;
+    padding: 20px 30px 10px;
+}
+.show {
+    width:128px;
 }
 .menu {
-    display: none;
+    position: absolute;
+    top: 35px;
+    right: 30px;
+}
+.menu button {
+    color: #eee;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: tomato;
+    border-style: none;
+    padding: 3px;
+    border-radius: 5px;
 }
 .descript {
     width: 300px;
     height: 200px;
-    background-color: rgba(78, 81, 83, 0.6);
+    background-color: rgba(250, 128, 114, 0.6);
     position: absolute;
     left: 160px;
     top: 5px;
@@ -58,12 +68,17 @@ body {
     font-size: 16px;
     font-weight: bold;
     color: #eee;
-    margin: 30px 5px 30px 0;
+    margin: 30px 5px 10px 0;
+}
+.list1,
+.list2 {
+    display: none;
 }
 .list1 li,
 .list2 li{
     list-style: none;
     margin-bottom: 8px;
+    text-align: center;
 }
 .list1 li a,
 .list2 li a {
@@ -83,9 +98,10 @@ body {
 /* ------------------------------------------ */
 /*右侧文章设置区*/
 .article-list {
-    width: 700px;
+    box-sizing: border-box;
+    width: 100%;
     background-color: #eee;
-    padding: 20px;
+    padding: 15px;
 }
 .title a {
     font-size: 24px;
