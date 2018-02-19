@@ -154,6 +154,10 @@ h2 {
     text-align: left;
 }
 /* myworks/content1-trip.html */
+.language-code pre,
+.css-code pre {
+    overflow: auto;
+}
 .language-code,
 .css-code {
     font-size: 0.5rem;
