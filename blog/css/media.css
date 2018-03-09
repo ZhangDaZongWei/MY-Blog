@@ -1,5 +1,5 @@
 /* myworks独立样式表 */
-@import url('myworks.css');
+/* @import url('code.css'); */
 /* 全局设置区 */
 * {
     margin: 0;
@@ -108,7 +108,7 @@ body {
 .title a {
     font-size: 24px;
     font-weight: bold;
-    color: #151513;
+    color: #778899;
     text-decoration: none;
 }
 .subTitle {
@@ -150,15 +150,36 @@ body {
     font-size: 16px;
 }
 h2 {
-    color: #5D6D7E;
+    color: rgb(105, 118, 131);
     text-align: left;
 }
+h2:nth-child(1) {
+    color: #34495E;
+}
 /* myworks/content1-trip.html */
-.language-code pre,
+/* .language-code pre,
 .css-code pre {
     overflow: auto;
 }
 .language-code,
 .css-code {
     font-size: 1rem;
+} */
+h4 {
+    margin: 15px 0 0 0;
+}
+pre {
+    font-size: 16px;
+    font-weight: 500;
+    border-left: 6px solid rgb(212, 106, 82);
+}
+.code {
+    padding: 2px;
+    margin: 0 3px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(163, 153, 151);
+    border: 1px solid rgb(180, 169, 169);
+    border-radius: 3px;
 }
