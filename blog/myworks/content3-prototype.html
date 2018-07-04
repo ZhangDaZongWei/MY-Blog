@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>对于js对象和原型继承的理解</title>
+    <link media="(min-width:800px)" rel="stylesheet" href="../css/allcss.css">
+    <link media="(max-width:800px)" rel="stylesheet" href="../css/media.css">
+    <script src="../js/menu.js"></script>
+    <link rel="stylesheet" href="../../highlight/styles/atom-one-dark.css">
+    <script src="../../highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+    <div class="container-left">
+        <div class="nav">
+            <div class="show">
+                <a href="../index.html" class="home">张 大宗伟</a>
+                <div class="descript">
+                    学校：河南师范大学<br />
+                    家乡：信阳<br />
+                    年级：大三<br />
+                    专业：计算机科学与技术<br />
+                    喜好：热爱一切美好的事物
+                </div>
+            </div>
+            <div class="menu">
+                <button type="button" class="menu-btn">菜 单</button>
+            </div>
+            <div class="intro">
+                将心与明月 温暖至今日
+            </div>
+            <div class="list1">
+                <li><a href="../MyLife.html">我的生活</a></li>
+                <li><a href="../myworks.html">我的作品</a></li>
+                <li><a href="#">我的看法</a></li>
+                <li><a href="#">弟弟文章</a></li>
+            </div>
+            <div class="list2">
+                <li><a href="#"># 记录</a></li>
+                <li><a href="#"># 弟弟</a></li>
+                <li><a href="#"># javascript</a></li>
+                <li><a href="#"># git</a></li>
+                <li><a href="#"># mysql</a></li>
+            </div>
+        </div>
+    </div>
+    <div class="container-right">
+        <div class="article-list">
+            <div class="article">
+                <div class="title">
+                    <h2>对于js对象和原型继承的理解</h2>
+                </div>
+                <p class="subTitle">张宗伟 平常 更新于 2018-03-010 <span>我的作品 | #html css js</span></p>
+                <div class="content">
+                    <p>对于js的对象和原型继承机制的理解，困扰了我很长时间，我参考的是《javascript编程全解》这本书，第一次没有看懂，实打实地说这本书的讲解确实很抽象了，不知道是不是国人翻译的不够深入的问题。今天又看了一遍，才算有了一些头绪，记录下来。</p>
+                    <h2>对象和类</h2>
+                    <h4>对象</h4>
+                    <p>生成一个对象，主要有两种方式，一种是字面量；另一种是通过构造函数生成。代码如下：</p>
+<pre><code class="javascript">    //字面量方式生成对象obj1；
+    var obj1 = {
+        x: 3,
+        y: 2
+    }
+    //构造函数方式生成对象obj2；
+    var obj2 = new obj();
+    obj2.x = 3;
+    obj2.y = 2;
+</code></pre>
+                    <p>明确一下对象并没有名称，所以不能说对象obj1，这样看起来对象的名称叫obj1，而应该说<strong>对象的引用赋值给了obj1</strong>，obj2同样如此。</p>
+                    <h4>类</h4>
+                    <p>首先js中没有类的概念，但是通过构造函数生成一个对象的时，却很像java中用类生成一个实例。姑且把new后面的函数名看做类名，这样生成的对象称作对象的实例。代码如下：</p>
+<pre><code class="javascript">
+    //定义一个函数
+    function Myclass(x,y) {
+        this.x = x;
+        this.y = y;
+    }
+    //生成一个对象
+    var obj3 = new Myclass(3,2);
+</code></pre>
+                    <p>js中一切皆对象，且支持面向对象</p>
+                    <h2>原型继承</h2>
+                    <p>js中的继承是基于原型的，首先来看一下一段代码：</p>
+<pre><code class="javascript">
+    //定义一个函数
+    function Myclass(x,y) {
+        this.x = x;
+        this.y = y;
+    }
+    Myclass.prototype.show = function() {
+        console.log(this.x + '' + this.y);
+    }
+    //生成一个对象
+    var obj4 = new Myclass(3,2);
+    obj4.show();
+    //输出：3 2
+</code></pre>
+                <p>可以看出show方法并不是obj4的直接属性，但是可以被调用，从表面上来看，它是从另一个对象(Myclass.prototype)的属性继承而来的。</p>
+                <h4>原型链</h4>
+                <div class="li-list">
+                    原型继承支持一种称为原型链的功能,需要满足两个条件：
+                    <li>所有的函数(对象)都具有名为prototype的属性。</li>
+                    <li>所有的对象都含有一个(隐藏的)链接，用以指向在对象生成过程中所使用的构造函数的prototype属性所引用的对象。</li>
+                </div>
+                <p>那么通过其构造函数生成的对象对属性的读取(以及对方法的调用)是按照以下的方式运行的：</p>
+                <div class="li-list">
+                    <li>对象自身的属性。</li>
+                    <li>隐式链接所指向的对象(构造函数的prototype属性所引用的对象)的属性。</li>
+                    <li>第二项中的对象的隐式链接所引用对象的属性。</li>
+                    <li>反复按第三项的规则查找直至全部查找完毕(查找的终点是Obj.prototype)。</li>
+                </div>
+                <p>这里大概得出来<strong>原型继承</strong>的门路了，即一个对象继承的是其构造函数的prototype属性所引用的对象的属性。另外如果是字面量生成的对象，则继承obj.prototype的属性。举一个例子，代码如下：</p>
+<pre><code class="javascript">
+    //定义一个函数
+    function Myclass() {
+        this.x = 'x in Myclass';
+    }
+    //生成一个对象
+    var obj5 = new Myclass();
+    console.log(obj5.x);
+    //输出：x in Myclass
+    Myclass.prototype.z = 'z in Myclass.prototype';
+    console.log(obj5.z);
+    //输出：z in Myclass.prototype
+</code></pre>
+                <p>通过上述Myclass构造函数生成的对象之间实现了对Myclass.prototype属性的共享，这种共享用面向对象的术语来说就是继承。注意：当写入或者修改对象的属性时，对于继承的属性没有影响。</p>
+                <p>默认情况下，Myclass.prototype的构造函数是一个Object对象，这里结合上面说的原型链的终点在Obj.prototype就不难理解。</p>
+                <h4>原型对象</h4>
+                <p>对象的隐式链接(_proto_)所引用的对象就是原型对象，也就是Myclass.prototype,可以通过obj._proto_得到原型对象。注意原型对象有所属的关系，例如：</p>
+<pre><code class="javascript">
+    //定义一个函数
+    function Myclass() {
+        this.x = 'x in Myclass';
+    }
+    //生成一个对象
+    var obj6 = new Myclass();
+    //原型对象Myclass.prototype所属的是obj6，即obj6的原型对象是Myclass.prototype
+    console.log(obj6._proto_ == Myclass.prototype)
+    //输出：true
+</code></pre>
+                <p>因为_proto_为js的增强功能，所以并不是都支持，但是在ECMAScript5中有getPrototypeOf方法，同样返回原型对象。不过调用方式为：Obj.getPrototypeOf(obj)。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

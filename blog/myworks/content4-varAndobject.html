@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>变量与对象总结</title>
+    <link media="(min-width:800px)" rel="stylesheet" href="../css/allcss.css">
+    <link media="(max-width:800px)" rel="stylesheet" href="../css/media.css">
+    <script src="../js/menu.js"></script>
+    <link rel="stylesheet" href="../../highlight/styles/atom-one-dark.css">
+    <script src="../../highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+    <div class="container-left">
+        <div class="nav">
+            <div class="show">
+                <a href="../index.html" class="home">张 大宗伟</a>
+                <div class="descript">
+                    学校：河南师范大学<br />
+                    家乡：信阳<br />
+                    年级：大三<br />
+                    专业：计算机科学与技术<br />
+                    喜好：热爱一切美好的事物
+                </div>
+            </div>
+            <div class="menu">
+                <button type="button" class="menu-btn">菜 单</button>
+            </div>
+            <div class="intro">
+                将心与明月 温暖至今日
+            </div>
+            <div class="list1">
+                <li><a href="../MyLife.html">我的生活</a></li>
+                <li><a href="../myworks.html">我的作品</a></li>
+                <li><a href="#">我的看法</a></li>
+                <li><a href="#">弟弟文章</a></li>
+            </div>
+            <div class="list2">
+                <li><a href="#"># 记录</a></li>
+                <li><a href="#"># 弟弟</a></li>
+                <li><a href="#"># javascript</a></li>
+                <li><a href="#"># git</a></li>
+                <li><a href="#"># mysql</a></li>
+            </div>
+        </div>
+    </div>
+    <div class="container-right">
+        <div class="article-list">
+            <div class="article">
+                <div class="title">
+                    <h2>变量与对象总结</h2>
+                </div>
+                <p class="subTitle">张宗伟 平常 更新于 2018-03-22 <span>我的作品 | #html css js</span></p>
+                <div class="content">
+                   <p>看书的笔记，总结再提升</p>
+                   <h2>变量</h2>
+                   <div class="li-list">
+                       <li>1.变量是持有某个值或者表示某个对象，根据此分为<b>基本类型</b>和<b>引用类型</b>。</li>
+                       <li>2.若直接使用一个未被定义的变量则会出现<strong>Reference Error</strong>，若对变量进行声明但是没有进行赋值则值为undefined(undefined也为一种数据类型)。</li>
+<pre><code class="javascript">var b = a + 2;
+// Uncaught ReferenceError: a is not defined
+var a;
+console.log(a);
+// undefined
+</code></pre>
+                       <li>3.将基本类型的值赋给变量时，变量“拥有”了该值，当作为右边赋值给其他变量时，是将其变量复制了一份；而将对象引用赋给变量时，变量只是指示了对象的位置，当作为右边赋值给其他变量时，只让该变量也指向了对象。</li>
+                       <li>4.当对引用类型变量进行操作时，变动的是其对象本身，而引用值(引用值只是一个代表引用的名称，便于使用)没变。</li>
+                       <li>5.在函数外部定义的变量为全局变量，在函数内部定义的变量(包括函数形参)是局部变量。</li>
+                   </div>
+                   <h2>变量与属性的关系</h2>
+                   <div class="li-list">
+                        <li>1.在js中变量就是属性，因为js中一切皆对象。全局变量是全局对象的属性，而局部变量是在函数被调用时隐式生成的call对象的属性。</li>
+                        <li>2.属性与变量有一点不同，就是当对象使用一个不存在的属性时，不会出现错误，而是属性值是undefined。</li>
+<pre><code class="javascript">var o = {};
+console.log(o.a);
+// undefined
+</code></pre>
+                        <li>3.在全局范围内查找变量时，实际就是查找全局对象的属性；在局部范围内查找变量时，有内而外，先是call对象的属性，一层一层地往外找，最后是全局对象的属性。</li>
+                   </div>
+                   <h2>对变量是否存在的检验</h2>
+                   <div class="li-list">
+                       <li>1.这有一个技巧，如果你不清楚一个变量是否已经声明或者赋值，可以使用下面的方法：</li>
+<pre><code class="javascript">var a = a || 7;
+// 当a没有声明或者声明但没有赋值时，就赋值为7；当a被声明且被赋值了就是它原先的值。
+//缺点：1.当a为0或者""时，经过运算同样是假，这是不符合规则的。
+//2.不能判断变量是否被声明，当a被赋值为7时，存在变量a已经声明，但是没有赋值；变量没有声明两种情况。
+</code></pre>
+                        <li>2.对于第一种方式的改进，使用如下方法：</li>
+<pre><code class="javascript">
+var a;
+var b = (a !== undefined) ? a : 7;
+//1.解决了上述方法中缺点1的问题。
+//2.仍然不能判断变量a是否被声明。
+</code></pre>                        
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
